@@ -73,13 +73,10 @@ Bridgetown.configure do |config|
   only :server do
     init :mail, password: ENV["SENDGRID_API_KEY"]
   end
-endpermalinkh may be called from the main `configure` block.
+end
+```
 
-{%@ Note do %}
-  #### Processing Order
-
-Values from bridgetown.config.yml are processed first, then config/initializers.rb, command line arguments are processed last. If you defined environments in bridgetown.config.yml, but also had a condition in initializers.rb, adding `<pre><%= site.config.to_yaml %></pre>` in a page would show the yaml defined environment, but the active parameters would match those set in initializers.
-{% end %}
+The initializer-style config is the most powerful, because you can configure different options for different contexts (static, server, console, rake), as well as interact with environment variables and other system features via full Ruby code. You can also initialize gem-based plugins and configure them in a single pass. And you can write your own initializers which may be called from the main `configure` block.
 
 {%@ Note do %}
   #### Processing Order
